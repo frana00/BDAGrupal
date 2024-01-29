@@ -2,6 +2,12 @@ import pymysql
 import pymongo
 import os
 from dotenv import load_dotenv
+from pymongo import UpdateOne
+
+# Función para dividir una lista en lotes
+def dividir_en_lotes(lista, tamano_lote):
+    for i in range(0, len(lista), tamano_lote):
+        yield lista[i:i + tamano_lote]
 
 # Cargar variables de entorno
 load_dotenv()
@@ -48,7 +54,29 @@ coleccion_empresas = db["Empresas"]
 coleccion_estaciones = db["Estaciones"]
 coleccion_precios_combustible = db["PreciosCombustible"]
 
-# Insertar datos en MongoDB
-resultado_empresas = coleccion_empresas.insert_many(lista_empresas)
-resultado_estaciones = coleccion_estaciones.insert_many(lista_estaciones)
-resultado_precios_combustible = coleccion_precios_combustible.insert_many(lista_precios_combustible)
+# Empresas
+tamano_lote = 1000
+contador = 0
+for lote_empresas in dividir_en_lotes(lista_empresas, tamano_lote):
+    operaciones = [UpdateOne({"EmpresaID": empresa["EmpresaID"]}, {"$set": empresa}, upsert=True) for empresa in lote_empresas]
+    coleccion_empresas.bulk_write(operaciones)
+    contador += len(lote_empresas)
+    print(f"Empresas procesadas: {contador} de {len(lista_empresas)}")
+
+# Estaciones
+contador = 0
+for lote_estaciones in dividir_en_lotes(lista_estaciones, tamano_lote):
+    operaciones = [UpdateOne({"EstacionID": estacion["EstacionID"]}, {"$set": estacion}, upsert=True) for estacion in lote_estaciones]
+    coleccion_estaciones.bulk_write(operaciones)
+    contador += len(lote_estaciones)
+    print(f"Estaciones procesadas: {contador} de {len(lista_estaciones)}")
+
+# Precios Combustible
+contador = 0
+for lote_precios in dividir_en_lotes(lista_precios_combustible, tamano_lote):
+    operaciones = [UpdateOne({"precioId": precio["precioId"]}, {"$set": precio}, upsert=True) for precio in lote_precios]
+    coleccion_precios_combustible.bulk_write(operaciones)
+    contador += len(lote_precios)
+    print(f"Precios procesados: {contador} de {len(lista_precios_combustible)}")
+
+cliente_mongo.close()
