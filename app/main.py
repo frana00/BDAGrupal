@@ -3,8 +3,6 @@ import pymongo
 import os
 from dotenv import load_dotenv
 
-load_dotenv()
-
 # Cargar variables de entorno
 load_dotenv()
 
