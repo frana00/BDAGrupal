@@ -42,4 +42,4 @@ Las credenciales y URIs sensibles se manejan mediante variables de entorno para 
 - `Daniel Prol`: [dprol] - https://github.com/dprol
 - `Daniela Díaz`: [dasniela] - https://github.com/dasniela
 - `Daniela González`: [fraychella] - https://github.com/fraychella
-- `Alejandro Cano`: [user] - link
+- `Alejandro Cano`: [aknodr] - https://github.com/aknodr
