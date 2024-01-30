@@ -1,9 +1,5 @@
 import os
 import pymongo
-
-from app.main import db
-
-
 def conectar_mongo(uri):
     uri_mongo = os.getenv("MONGO_URI")
     cliente_mongo = pymongo.MongoClient(uri_mongo, tls=True, tlsAllowInvalidCertificates=True)
@@ -43,20 +39,3 @@ def empresa_con_mas_estaciones(db):
             }
         }
     ])
-
-# Imprime empresa con más estaciones de servicio Terrestres, solo 1 línea
-
-def imprimir_empresa_con_mas_estaciones(db):
-    while True:
-        empresa = empresa_con_mas_estaciones(db)
-        print(empresa)
-        break
-
-def imprimir_empresa_con_mas_estaciones(db):
-    for empresa in empresa_con_mas_estaciones(db):
-        print(empresa)
-
-# Llamar a la función imprimir_empresa_con_mas_estaciones
-imprimir_empresa_con_mas_estaciones(db)
-
-

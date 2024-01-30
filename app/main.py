@@ -55,7 +55,7 @@ coleccion_estaciones = db["Estaciones"]
 coleccion_precios_combustible = db["PreciosCombustible"]
 
 # Empresas
-tamano_lote = 1000
+tamano_lote = 5000
 contador = 0
 for lote_empresas in dividir_en_lotes(lista_empresas, tamano_lote):
     operaciones = [UpdateOne({"EmpresaID": empresa["EmpresaID"]}, {"$set": empresa}, upsert=True) for empresa in lote_empresas]
