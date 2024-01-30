@@ -38,7 +38,7 @@ Este proyecto consiste en la implementación de un sistema de gestión de bases 
 
 ## Instalación y Ejecución
 1. **Clonar el Repositorio**:
-   Clona este repositorio a tu máquina local utilizando `git clone [url-del-repositorio]`.
+   Clona este repositorio a tu máquina local utilizando `git clone https://github.com/frana00/BDAGrupal.git`.
 
 2. **Instalar Dependencias**:
    Antes de ejecutar el script, instala las dependencias necesarias. Si no tienes un archivo `requirements.txt`, puedes crear uno incluyendo las bibliotecas necesarias como `pymysql`, `pymongo`, `python-dotenv`, etc. Luego, ejecuta `pip install -r requirements.txt` para instalarlas.
