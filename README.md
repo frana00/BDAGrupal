@@ -34,7 +34,6 @@ Este proyecto consiste en la implementación de un sistema de gestión de bases 
 
 ## Seguridad
 - Las credenciales y URIs sensibles se manejan mediante variables de entorno para mejorar la seguridad y la gestión de configuraciones.
-- Por motivos estrictamente académicos, se comparte el fichero .env, que contiene las variables de entorno, no obstante el equipo tiene claro que no conviene hacerlo y que se debe agregar al gitignore.
 
 ## Instalación y Ejecución
 1. **Clonar el Repositorio**:
